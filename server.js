@@ -67,8 +67,8 @@ app.post('/api/books', function (req, res) {
     }
     // add this author to the book
     newBook.author = author;
-
-
+    console.log(req.body.author);
+    console.log(author);
     // save newBook to database
     newBook.save(function(err, book){
       if (err) {
