@@ -69,15 +69,21 @@ app.get('/api/books/:id', function (req, res) {
 });
 
 
-
 // create new book
 app.post('/api/books', function (req, res) {
   // create new book with form data (`req.body`)
   console.log('books create', req.body);
-  var newBook = req.body;
-  books.push(newBook);
-  res.json(newBook);
+  db.Book.find(function(err, books) {
+    if (err) {return console.log("index error: " + err);}
+    else {
+      var newBook = req.body;
+      books.push(newBook);
+      res.json(newBook);
+    }   //closes else statement
+  })   //closes find function
 });
+
+
 
 // update book
 app.put('/api/books/:id', function(req,res){
